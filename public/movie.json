@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "img": "/img/img1.png",
+    "name": "Inception",
+    "director": "Christopher Nolan",
+    "rating": 8.8,
+    "releaseDate": "2010-07-16",
+    "category": "Sci-Fi"
+  },
+  {
+    "id": 2,
+    "img": "/img/img2.png",
+    "name": "Interstellar",
+    "director": "Christopher Nolan",
+    "rating": 8.6,
+    "releaseDate": "2014-11-07",
+    "category": "Adventure"
+  },
+  {
+    "id": 3,
+    "img": "/img/img3.png",
+    "name": "Avatar: The Way of Water",
+    "director": "James Cameron",
+    "rating": 7.6,
+    "releaseDate": "2022-12-16",
+    "category": "Fantasy"
+  },
+  {
+    "id": 4,
+    "img": "/img/img4.png",
+    "name": "Joker",
+    "director": "Todd Phillips",
+    "rating": 8.4,
+    "releaseDate": "2019-10-04",
+    "category": "Drama"
+  },
+  {
+    "id": 5,
+    "img": "/img/img5.png",
+    "name": "Avengers: Endgame",
+    "director": "Anthony & Joe Russo",
+    "rating": 8.4,
+    "releaseDate": "2019-04-26",
+    "category": "Action"
+  },
+  {
+    "id": 6,
+    "img": "/img/img6.png",
+    "name": "The Dark Knight",
+    "director": "Christopher Nolan",
+    "rating": 9.0,
+    "releaseDate": "2008-07-18",
+    "category": "Action"
+  },
+  {
+    "id": 7,
+    "img": "/img/img7.png",
+    "name": "Titanic",
+    "director": "James Cameron",
+    "rating": 7.9,
+    "releaseDate": "1997-12-19",
+    "category": "Romance"
+  },
+  {
+    "id": 8,
+    "img": "/img/img8.png",
+    "name": "The Matrix",
+    "director": "The Wachowskis",
+    "rating": 8.7,
+    "releaseDate": "1999-03-31",
+    "category": "Sci-Fi"
+  },
+  {
+    "id": 9,
+    "img": "/img/img9.png",
+    "name": "Gladiator",
+    "director": "Ridley Scott",
+    "rating": 8.5,
+    "releaseDate": "2000-05-05",
+    "category": "Drama"
+  },
+  {
+    "id": 10,
+    "img": "/img/img10.png",
+    "name": "Black Panther",
+    "director": "Ryan Coogler",
+    "rating": 7.3,
+    "releaseDate": "2018-02-16",
+    "category": "Action"
+  },
+  {
+    "id": 11,
+    "img": "/img/img11.png",
+    "name": "The Lion King",
+    "director": "Jon Favreau",
+    "rating": 6.9,
+    "releaseDate": "2019-07-19",
+    "category": "Animation"
+  },
+  {
+    "id": 12,
+    "img": "/img/img12.png",
+    "name": "Doctor Strange in the Multiverse of Madness",
+    "director": "Sam Raimi",
+    "rating": 6.9,
+    "releaseDate": "2022-05-06",
+    "category": "Fantasy"
+  }
+]
