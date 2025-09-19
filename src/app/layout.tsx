@@ -16,7 +16,7 @@ export default function RootLayout({
       <body>
         
         {children}
-        {/* <footer>fjkhaswieru</footer> */}
+        
       </body>
     </html>
   );

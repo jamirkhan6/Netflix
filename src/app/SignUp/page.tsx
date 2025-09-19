@@ -1,6 +1,6 @@
 
 
-export default function CreateAccountPage() {
+export default function SignUpPage() {
   return (
     <div className="relative h-screen w-full">
       {/* Background image */}
