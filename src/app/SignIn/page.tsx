@@ -1,15 +1,42 @@
 "use client"
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
+  const router = useRouter();
 
-    const router = useRouter();
+  const [form, setForm] = useState({
+    email : "",
+    password : ""
+  })
+
+  const handleChanged = (e) => {
+    const {name, value} = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name] : value,
+    }))
+  }
+
 
     const handleLogIn = (e) => {
       e.preventDefault();
+
+      // Get saved user from localStorage
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (
+        savedUser &&
+        form.email === savedUser.email &&
+        form.password === savedUser.password
+      ) {
+        // Mark logged in
         localStorage.setItem("loggedIn", "true");
         router.push("/home");
-    }
+      } else {
+        alert("Invalid email or password!");
+      }
+    };
 
   return (
     <div className="relative h-screen w-full">
@@ -37,11 +64,17 @@ export default function SignInPage() {
         <form className="flex flex-col gap-4 w-full mt-3">
           <input
             type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChanged}
             placeholder="Email"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />
           <input
             type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChanged}
             placeholder="Password"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />

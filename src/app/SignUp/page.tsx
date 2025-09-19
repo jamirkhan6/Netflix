@@ -1,6 +1,40 @@
-
+"use client"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+
+  const router = useRouter()
+
+  const [user, setUser] = useState({
+    name : "",
+    email : "",
+    password : "",
+  })
+
+  const handleChanged = (e) => {
+    const {name, value} = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name] : value
+    }))
+  }
+
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+
+    if(!user.name || !user.email || !user.password) {
+      alert("fuck man!, fill the all requerment")
+    }
+    else {
+      localStorage.setItem("user", JSON.stringify(user));
+
+      router.push("/SignIn");
+    }
+  }
+
+
+
   return (
     <div className="relative h-screen w-full">
       {/* Background image */}
@@ -27,23 +61,32 @@ export default function SignUpPage() {
           Create Your Account
         </h1>
 
-        <form className="flex flex-col gap-4 w-full mt-3">
+        <form onSubmit={handleCreateAccount} className="flex flex-col gap-4 w-full mt-3">
           <input
             type="text"
+            name="name"
+            value={user.name}
+            onChange={handleChanged}
             placeholder="Full Name"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />
           <input
             type="email"
+            name="email"
+            value={user.email}
+            onChange={handleChanged}
             placeholder="Email"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />
           <input
             type="password"
+            name="password"
+            value={user.password}
+            onChange={handleChanged}
             placeholder="Password"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />
-          <button className="bg-red-600 hover:bg-red-700 text-white py-3 rounded-sm font-semibold mt-2">
+          <button type="submit" className="bg-red-600 hover:bg-red-700 text-white py-3 rounded-sm font-semibold mt-2">
             Create Account
           </button>
           <p className="text-white text-xl font-bold">Or</p>
