@@ -28,7 +28,7 @@ export default function SignUpPage() {
     }
     else {
       localStorage.setItem("user", JSON.stringify(user));
-
+      
       router.push("/SignIn");
     }
   }

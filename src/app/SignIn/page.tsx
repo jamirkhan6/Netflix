@@ -32,9 +32,11 @@ export default function SignInPage() {
       ) {
         // Mark logged in
         localStorage.setItem("loggedIn", "true");
+        document.cookie = "loggedIn=true; path=/";
         router.push("/home");
       } else {
         alert("Invalid email or password!");
+        localStorage.setItem("loggedIn", "false")
       }
     };
 
@@ -85,7 +87,7 @@ export default function SignInPage() {
 
         <p className="text-white/70 mt-4 text-sm">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-red-600 hover:underline">
+          <a href="/SignUp" className="text-red-600 hover:underline">
             Create one
           </a>
         </p>
