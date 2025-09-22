@@ -2,7 +2,7 @@
   {
     "id": 1,
     "img": "/img/img1.png",
-    "name": "Inception",
+    "name": "URBAN MOSAIC",
     "director": "Christopher Nolan",
     "rating": 8.8,
     "releaseDate": "2010-07-16",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "img": "/img/img2.png",
-    "name": "Interstellar",
+    "name": "CITY ECHOES",
     "director": "Christopher Nolan",
     "rating": 8.6,
     "releaseDate": "2014-11-07",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "img": "/img/img3.png",
-    "name": "Avatar: The Way of Water",
+    "name": "SKYLINE SIPS",
     "director": "James Cameron",
     "rating": 7.6,
     "releaseDate": "2022-12-16",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "img": "/img/img4.png",
-    "name": "Joker",
+    "name": "JNIGHT SHIFT DRIVE",
     "director": "Todd Phillips",
     "rating": 8.4,
     "releaseDate": "2019-10-04",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "img": "/img/img5.png",
-    "name": "Avengers: Endgame",
+    "name": "ROAD TO NOWHERE",
     "director": "Anthony & Joe Russo",
     "rating": 8.4,
     "releaseDate": "2019-04-26",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "img": "/img/img6.png",
-    "name": "The Dark Knight",
+    "name": "FESTIVAL of SHADOWS",
     "director": "Christopher Nolan",
     "rating": 9.0,
     "releaseDate": "2008-07-18",
@@ -56,7 +56,7 @@
   {
     "id": 7,
     "img": "/img/img7.png",
-    "name": "Titanic",
+    "name": "OCEAN'S CALL",
     "director": "James Cameron",
     "rating": 7.9,
     "releaseDate": "1997-12-19",
@@ -65,7 +65,7 @@
   {
     "id": 8,
     "img": "/img/img8.png",
-    "name": "The Matrix",
+    "name": "UNSPOKEN TRUTH",
     "director": "The Wachowskis",
     "rating": 8.7,
     "releaseDate": "1999-03-31",
@@ -74,7 +74,7 @@
   {
     "id": 9,
     "img": "/img/img9.png",
-    "name": "Gladiator",
+    "name": "SLIENT NIGHT",
     "director": "Ridley Scott",
     "rating": 8.5,
     "releaseDate": "2000-05-05",
@@ -83,7 +83,7 @@
   {
     "id": 10,
     "img": "/img/img10.png",
-    "name": "Black Panther",
+    "name": "HANDALA'S RETUREN",
     "director": "Ryan Coogler",
     "rating": 7.3,
     "releaseDate": "2018-02-16",
@@ -92,7 +92,7 @@
   {
     "id": 11,
     "img": "/img/img11.png",
-    "name": "The Lion King",
+    "name": "BLUE INTERLUDE",
     "director": "Jon Favreau",
     "rating": 6.9,
     "releaseDate": "2019-07-19",
@@ -101,7 +101,7 @@
   {
     "id": 12,
     "img": "/img/img12.png",
-    "name": "Doctor Strange in the Multiverse of Madness",
+    "name": "TIDE OF DESTINY",
     "director": "Sam Raimi",
     "rating": 6.9,
     "releaseDate": "2022-05-06",

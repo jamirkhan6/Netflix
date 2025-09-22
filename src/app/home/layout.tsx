@@ -14,23 +14,30 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className=" min-h-screen flex flex-col">
+    <div className="bg-[#141414] min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className="flex justify-between items-center w-full py-6 px-14">
         <div className="flex items-center gap-12">
-          <img src="/img/logo-copy.png" alt="" className="w-52" />
+          <img src="/img/logo-png.png" alt="" className="w-52" />
           <div className="flex gap-6">
-            <Link href="/home" className="hover:underline">
+            <Link href="/home" className="text-white hover:underline">
               Home
             </Link>
-            <Link href="/home/tv-show" className="hover:underline">
+            <Link href="/home/tv-show" className="text-white hover:underline">
               TV Shows
             </Link>
-            <Link href="/home/movies" className="hover:underline">
+            <Link href="/home/movies" className="text-white hover:underline">
               Movies
             </Link>
-            <Link href={"/home/new-movies"}>Recently Added</Link>
-            <Link href={"/my-list"}>My List</Link>
+            <Link
+              href={"/home/new-movies"}
+              className="text-white hover:underline"
+            >
+              Recently Added
+            </Link>
+            <Link href={"/my-list"} className="text-white hover:underline">
+              My List
+            </Link>
           </div>
         </div>
         <button

@@ -25,17 +25,36 @@ export default function Home() {
 
   return (
     <div>
-      <h2>Home Page</h2>
-
-      <div className="mt-6 w-full">
-        <h3 className="text-lg font-bold">Movies:</h3>
-        <div className="bg-amber-300">
+      <div className=" w-full">
+        {/* <h3 className="text-lg font-bold">Movies:</h3> */}
+        <div className="grid grid-cols-6 gap-8">
           {data.map((movie: any, i: number) => (
-            <h1 key={i}>{movie.name}</h1>
+            <div
+              className="w-full p-4 col-span-1 border-1 border-stone-800 rounded-3xl"
+              key={i}
+            >
+              <div>
+                <img
+                  src={movie.img}
+                  alt=""
+                  className="w-full h-72 rounded-2xl"
+                />
+              </div>
+              <h1 className="h-12 text-xl text-white font-bold mt-3">
+                {movie.name}
+              </h1>
+              <div className="flex justify-between mt-1">
+                <p className="text-white">
+                  catagory: <span className="font-bold">{movie.category}</span>
+                </p>
+                <p className="text-white">
+                  Rating: <span className="text-red-700 font-semibold">{movie.rating}</span>
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
-
     </div>
   );
 }
