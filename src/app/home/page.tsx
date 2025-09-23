@@ -32,6 +32,7 @@ export default function Home() {
             <div
               className="w-full p-4 col-span-1 border-1 border-stone-800 rounded-3xl"
               key={i}
+              onClick={() => router.push(`/movie?id=${movie.id}`)}
             >
               <div>
                 <img
@@ -45,10 +46,13 @@ export default function Home() {
               </h1>
               <div className="flex justify-between mt-1">
                 <p className="text-white">
-                  catagory: <span className="font-bold">{movie.category}</span>
+                  Catagory : <span className="font-semibold">{movie.category}</span>
                 </p>
                 <p className="text-white">
-                  Rating: <span className="text-red-700 font-semibold">{movie.rating}</span>
+                  Rating:{" "}
+                  <span className="text-red-700 font-semibold">
+                    {movie.rating}
+                  </span>
                 </p>
               </div>
             </div>

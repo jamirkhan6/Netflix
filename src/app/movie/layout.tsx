@@ -23,14 +23,14 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
             <Link href="/home" className="text-white hover:underline">
               Home
             </Link>
-            <Link href="/tv-show" className="text-white hover:underline">
+            <Link href="/home/tv-show" className="text-white hover:underline">
               TV Shows
             </Link>
-            <Link href="/movies" className="text-white hover:underline">
+            <Link href="/home/movies" className="text-white hover:underline">
               Movies
             </Link>
             <Link
-              href={"/new-movies"}
+              href={"/home/new-movies"}
               className="text-white hover:underline"
             >
               Recently Added
