@@ -18,6 +18,18 @@ export default function MoviePage() {
     enabled: !!id,
   });
 
+  const handleSave = (movie: any, type: "watched" | "saved") => {
+    const key = type === "watched"? "watchedMovies" : "savedMovies";
+
+    const existing = JSON.parse(localStorage.getItem(key) || "[]");
+    const alreadyExist = existing.some((m: any) => m.id === movie.id);
+
+    if (!alreadyExist) {
+      existing.push(movie)
+      localStorage.setItem(key, JSON.stringify(existing))
+    }
+  }
+
   if (isLoading) return <p>Loading...</p>;
   if (error instanceof Error) return <p>{error.message}</p>;
   if (!data) return <p>No movie found</p>;
@@ -48,10 +60,16 @@ export default function MoviePage() {
           <button className="bg-red-600 px-6 py-3 rounded hover:bg-red-700">
             Watch Movie
           </button>
-          <button className="bg-red-600 px-6 py-3 rounded hover:bg-red-700">
+          <button
+            className="bg-red-600 px-6 py-3 rounded hover:bg-red-700"
+            onClick={() => handleSave(data, "watched")}
+          >
             Already Watched
           </button>
-          <button className="bg-red-600 px-6 py-3 rounded hover:bg-red-700">
+          <button
+            className="bg-red-600 px-6 py-3 rounded hover:bg-red-700"
+            onClick={() => handleSave(data, "saved")}
+          >
             Save Logo
           </button>
         </div>
