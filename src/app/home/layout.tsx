@@ -1,12 +1,13 @@
-// app/home/layout.tsx
 "use client";
 
 import { ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "../api/context/AppContext";
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const {searchTerm, setSearchTerm} = useAppContext();
 
   const handleLogout = async () => {
     await fetch("/api/logout", { method: "POST" });
@@ -44,6 +45,8 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
             <input
               type="text"
               placeholder="Search movies..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="px-4 py-2 rounded-xl bg-gray-800 text-white 
                    placeholder-gray-400 focus:outline-none focus:ring-2 
                    focus:ring-red-500 w-64"
