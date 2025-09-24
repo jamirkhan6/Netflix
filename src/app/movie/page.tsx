@@ -2,10 +2,14 @@
 
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export default function MoviePage() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+
+  const [isWatched, setIsWatched] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["movie", id],
@@ -18,17 +22,44 @@ export default function MoviePage() {
     enabled: !!id,
   });
 
-  const handleSave = (movie: any, type: "watched" | "saved") => {
-    const key = type === "watched"? "watchedMovies" : "savedMovies";
+  // ✅ movie load হলে localStorage থেকে status চেক হবে
+  useEffect(() => {
+    if (data) {
+      const watchedMovies = JSON.parse(
+        localStorage.getItem("watchedMovies") || "[]"
+      );
+      const savedMovies = JSON.parse(
+        localStorage.getItem("savedMovies") || "[]"
+      );
 
-    const existing = JSON.parse(localStorage.getItem(key) || "[]");
+      setIsWatched(watchedMovies.some((m: any) => m.id === data.id));
+      setIsSaved(savedMovies.some((m: any) => m.id === data.id));
+    }
+  }, [data]);
+
+  // ✅ toggle function
+  const handleToggle = (movie: any, type: "watched" | "saved") => {
+    const key = type === "watched" ? "watchedMovies" : "savedMovies";
+
+    let existing = JSON.parse(localStorage.getItem(key) || "[]");
     const alreadyExist = existing.some((m: any) => m.id === movie.id);
 
-    if (!alreadyExist) {
-      existing.push(movie)
-      localStorage.setItem(key, JSON.stringify(existing))
+    if (alreadyExist) {
+      // remove if exists
+      existing = existing.filter((m: any) => m.id !== movie.id);
+      localStorage.setItem(key, JSON.stringify(existing));
+
+      if (type === "watched") setIsWatched(false);
+      if (type === "saved") setIsSaved(false);
+    } else {
+      // add if not exists
+      existing.push(movie);
+      localStorage.setItem(key, JSON.stringify(existing));
+
+      if (type === "watched") setIsWatched(true);
+      if (type === "saved") setIsSaved(true);
     }
-  }
+  };
 
   if (isLoading) return <p>Loading...</p>;
   if (error instanceof Error) return <p>{error.message}</p>;
@@ -60,17 +91,21 @@ export default function MoviePage() {
           <button className="bg-red-600 px-6 py-3 rounded hover:bg-red-700">
             Watch Movie
           </button>
+
+          {/* Watched button */}
           <button
-            className="bg-red-600 px-6 py-3 rounded hover:bg-red-700"
-            onClick={() => handleSave(data, "watched")}
+            className="px-6 py-3 rounded text-white bg-red-600"
+            onClick={() => handleToggle(data, "watched")}
           >
-            Already Watched
+            {isWatched ? "Already Watched" : "Mark as Watched"}
           </button>
+
+          {/* Saved button */}
           <button
-            className="bg-red-600 px-6 py-3 rounded hover:bg-red-700"
-            onClick={() => handleSave(data, "saved")}
+            className="px-6 py-3 rounded text-white bg-red-600"
+            onClick={() => handleToggle(data, "saved")}
           >
-            Save Logo
+            {isSaved ? "Already Saved" : "Save Movie"}
           </button>
         </div>
       </div>

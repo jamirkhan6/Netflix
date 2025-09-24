@@ -13,22 +13,32 @@ export default function SavedMovies() {
   return (
     <div className="p-6">
       <h2 className="text-3xl font-bold text-white mb-4">💾 Saved Movies</h2>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-6 gap-8">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="p-4 bg-gray-900 rounded-xl shadow-md border border-gray-700"
+            className="w-full p-4 col-span-1 border-1 border-gray-500 rounded-3xl"
           >
             <img
               src={movie.img}
               alt={movie.name}
-              className="w-full h-64 object-cover rounded-lg"
+              className="w-full h-72 rounded-2xl"
             />
-            <h3 className="text-xl text-white mt-3 font-semibold">
+            <h1 className="h-12 text-xl text-white font-bold mt-3">
               {movie.name}
-            </h3>
-            <p className="text-gray-400">{movie.category}</p>
-            <p className="text-red-500 font-bold">⭐ {movie.rating}</p>
+            </h1>
+            <div className="flex justify-between mt-1">
+              <p className="text-white">
+                Catagory :{" "}
+                <span className="font-semibold">{movie.category}</span>
+              </p>
+              <p className="text-white">
+                Rating:{" "}
+                <span className="text-red-700 font-semibold">
+                  {movie.rating}
+                </span>
+              </p>
+            </div>
           </div>
         ))}
       </div>

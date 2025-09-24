@@ -26,7 +26,18 @@ export default function Home() {
   return (
     <div>
       <div className=" w-full">
-        {/* <h3 className="text-lg font-bold">Movies:</h3> */}
+  
+        <div className="flex justify-between mx-6 mb-6">
+          <h1 className="text-4xl text-red-600 font-bold">Movies : </h1>
+          <select className="select select-bordered w-52 bg-red-600 text-white">
+            <option disabled selected>
+              Filter
+            </option>
+            <option>Top Rating</option>
+            <option>Most Watched</option>
+          </select>
+        </div>
+        
         <div className="grid grid-cols-6 gap-8">
           {data.map((movie: any, i: number) => (
             <div
@@ -46,7 +57,8 @@ export default function Home() {
               </h1>
               <div className="flex justify-between mt-1">
                 <p className="text-white">
-                  Catagory : <span className="font-semibold">{movie.category}</span>
+                  Catagory :{" "}
+                  <span className="font-semibold">{movie.category}</span>
                 </p>
                 <p className="text-white">
                   Rating:{" "}
