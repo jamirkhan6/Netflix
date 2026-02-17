@@ -40,12 +40,12 @@ export default function trending () {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
           {trendingMovies.map((movie: any) => (
             <div
-              key={movie.id}
+              key={movie._id}
               className="w-full p-4 border-1 border-stone-800 rounded-3xl cursor-pointer transform hover:scale-105 transition-all"
-              onClick={() => router.push(`/movie?id=${movie.id}`)}
+              onClick={() => router.push(`/movie?id=${movie._id}`)}
             >
               <img
-                src={movie.img}
+                src={movie.posterUrl}
                 alt={movie.name}
                 className="w-full h-72 rounded-2xl"
               />

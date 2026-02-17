@@ -14,7 +14,7 @@ export default function MoviePage() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["movie", id],
     queryFn: async () => {
-      const res = await fetch("/movie.json");
+      const res = await fetch("http://localhost:3000/api/movies");
       if (!res.ok) throw new Error("Failed to fetch movies");
       const movies = await res.json();
       return movies.find((m: any) => String(m.id) === id);
@@ -22,7 +22,8 @@ export default function MoviePage() {
     enabled: !!id,
   });
 
-  // ✅ movie load হলে localStorage থেকে status চেক হবে
+
+  
   useEffect(() => {
     if (data) {
       const watchedMovies = JSON.parse(
@@ -37,7 +38,8 @@ export default function MoviePage() {
     }
   }, [data]);
 
-  // ✅ toggle function
+
+
   const handleToggle = (movie: any, type: "watched" | "saved") => {
     const key = type === "watched" ? "watchedMovies" : "savedMovies";
 
@@ -68,7 +70,7 @@ export default function MoviePage() {
   return (
     <div className="pl-6 flex gap-10">
       <img
-        src={data.img}
+        src={data.posterUrl}
         alt={data.name}
         className="w-[512px] h-[712px] rounded-2xl"
       />

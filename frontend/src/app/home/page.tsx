@@ -17,12 +17,14 @@ export default function Home() {
     router.push("/SignIn");
   };
 
-  // ✅ movies fetch
+
+
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["movies"],
     queryFn: async () => {
-      const res = await fetch("/movie.json");
-      if (!res.ok) throw new Error("Failed to fetch posts");
+      const res = await fetch("http://localhost:3000/api/movies");
+      if (!res.ok) throw new Error("Failed to fetch movies");
       return res.json();
     },
   });
@@ -30,12 +32,12 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>;
   if (error instanceof Error) return <p>{error.message}</p>;
 
-  // ✅ প্রথমে search দিয়ে filter
+
   let filteredMovies = data.filter((movie: any) =>
     movie.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // ✅ তারপর filter select অনুযায়ী sort
+
   if (filter === "top") {
     filteredMovies = [...filteredMovies].sort((a, b) => b.rating - a.rating);
   }
@@ -69,12 +71,12 @@ export default function Home() {
             filteredMovies.map((movie: any, i: number) => (
               <div
                 className="w-full p-4 col-span-1 border-1 border-stone-800 rounded-3xl cursor-pointer transform hover:scale-105 transition-all"
-                key={i}
-                onClick={() => router.push(`/movie?id=${movie.id}`)}
+                key={movie._id}
+                onClick={() => router.push(`/movie?id=${movie._id}`)}
               >
                 <div className="relative w-full h-72">
                   <Image
-                    src={movie.img}
+                    src={movie.posterUrl}
                     alt={movie.name}
                     fill
                     className="rounded-2xl "

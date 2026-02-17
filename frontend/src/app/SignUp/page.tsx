@@ -20,18 +20,37 @@ export default function SignUpPage() {
     }))
   }
 
-  const handleCreateAccount = (e) => {
-    e.preventDefault();
+const handleCreateAccount = async (e) => {
+  e.preventDefault();
 
-    if(!user.name || !user.email || !user.password) {
-      alert("fuck man!, fill the all requerment")
-    }
-    else {
-      localStorage.setItem("user", JSON.stringify(user));
-      
+  if (!user.name || !user.email || !user.password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/user/SingUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message);
+    } else {
+      alert("Account created successfully");
       router.push("/SignIn");
     }
+
+  } catch (error) {
+    console.log(error);
   }
+};
+
 
 
 
