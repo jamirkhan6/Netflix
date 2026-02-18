@@ -19,24 +19,36 @@ export default function SignInPage() {
   }
 
 
-    const handleLogIn = (e) => {
+    const handleLogIn = async (e) => {
       e.preventDefault();
 
-      // Get saved user from localStorage
-      const savedUser = JSON.parse(localStorage.getItem("user"));
+      if(!form.email || !form.password) {
+        alert("please fill all fields")
+        return
+      }
 
-      if (
-        savedUser &&
-        form.email === savedUser.email &&
-        form.password === savedUser.password
-      ) {
-        // Mark logged in
-        localStorage.setItem("loggedIn", "true");
-        document.cookie = "loggedIn=true; path=/";
-        router.push("/home");
-      } else {
-        alert("Invalid email or password!");
-        localStorage.setItem("loggedIn", "false")
+      try {
+        const res = await fetch("http://localhost:3000/api/user/SignIn", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(form),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.log(data.message)
+          alert(data.message);
+        } else {
+          alert("Login successful");
+          router.push("/home");
+        }
+
+      } catch (error) {
+        console.log(error)
       }
     };
 

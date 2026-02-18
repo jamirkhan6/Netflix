@@ -29,7 +29,7 @@ const handleCreateAccount = async (e) => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/api/user/SingUp", {
+    const res = await fetch("http://localhost:3000/api/user/SignUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -40,6 +40,7 @@ const handleCreateAccount = async (e) => {
     const data = await res.json();
 
     if (!res.ok) {
+      console.log(data.message)
       alert(data.message);
     } else {
       alert("Account created successfully");
@@ -69,9 +70,9 @@ const handleCreateAccount = async (e) => {
       {/* Top navigation (optional) */}
       <div className="absolute -top-12 flex justify-between items-center w-full px-60">
         <img src="/img/logo.png" alt="Logo" className="w-52" />
-        <button className="px-6 py-2 bg-red-600 rounded-md text-white font-semibold hover:bg-red-700 transition">
+        <a href="/SignIn" className="px-6 py-2 bg-red-600 rounded-md text-white font-semibold hover:bg-red-700 transition">
           Sign In
-        </button>
+        </a>
       </div>
 
       {/* Centered Create Account form */}
@@ -116,7 +117,7 @@ const handleCreateAccount = async (e) => {
 
         <p className="text-white/70 mt-4 text-sm">
           Already have an account?{" "}
-          <a href="/login" className="text-red-600 hover:underline">
+          <a href="/SignIn" className="text-red-600 hover:underline">
             Sign In
           </a>
         </p>

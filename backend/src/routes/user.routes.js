@@ -7,35 +7,95 @@ const User = require("../models/user.model");
 const router = express.Router();
 
 
-router.post("/SingUp", async (req, res) => {
-    console.log(req.body)
-    try {
-        const {name, email, password} = req.body;
+router.post("/SignUp", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-        const existingUser = await User.find({email})
+    console.log("Incoming email:", email);
 
-        if(existingUser) {
-            return res.status(400).json({
-                message : "user already exist"
-            })
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10)
-
-        const newUser = new User({
-            name,
-            email,
-            password : hashedPassword
-        })
-
-        await newUser.save();
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message : "server error"
-        })
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
     }
-})
+
+    const normalizedEmail = email.toLowerCase();
+
+    const existingUser = await User.findOne({ email: normalizedEmail });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      name,
+      email: normalizedEmail,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+
+    res.status(201).json({
+      message: "User created successfully",
+    });
+  } catch (error) {
+    console.log("Signup Error:", error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
+
+
+
+router.post("/SignIn", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
+    }
+
+    const normalizedEmail = email.toLowerCase();
+
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "User not found",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Invalid credentials",
+      });
+    }
+
+    res.status(200).json({
+      message: "Login successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.log("Signin Error:", error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
 
 
 module.exports = router;
