@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken")
 const User = require("../models/user.model");
 
 
@@ -81,7 +82,14 @@ router.post("/SignIn", async (req, res) => {
       });
     }
 
-    res.cookie("loggedIn", "true", {
+    const token = jwt.sign(
+      {id : user._id},
+      process.env.JWT_SECRET,
+      {expiresIn : "1d"}
+    )
+
+
+    res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24,
@@ -107,7 +115,7 @@ router.post("/SignIn", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   try {
-    res.clearCookie("loggedIn", {
+    res.clearCookie("token", {
       httpOnly: true,
       sameSite: "lax",
       path: "/", // VERY IMPORTANT

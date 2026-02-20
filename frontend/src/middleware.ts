@@ -3,16 +3,20 @@ import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const loggedIn = req.cookies.get("loggedIn")?.value === "true";
 
-  
-  if (!loggedIn && (pathname.startsWith("/home") || pathname.startsWith("/movie")) ) {
+  const token = req.cookies.get("token")?.value;
+
+  // যদি token না থাকে এবং private route এ ঢুকতে চায়
+  if (
+    !token &&
+    (pathname.startsWith("/home") || pathname.startsWith("/movie") || pathname.startsWith("/my-list"))
+  ) {
     return NextResponse.redirect(new URL("/SignIn", req.url));
   }
 
-
+  // যদি token থাকে এবং public route এ ঢুকতে চায়
   if (
-    loggedIn &&
+    token &&
     (pathname === "/" ||
       pathname.startsWith("/SignIn") ||
       pathname.startsWith("/SignUp"))
@@ -24,5 +28,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api).*)"], // সব route cover করবে
+  matcher: ["/((?!_next|api).*)"],
 };
