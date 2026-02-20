@@ -17,7 +17,7 @@ export default function MoviePage() {
       const res = await fetch("http://localhost:3000/api/movies");
       if (!res.ok) throw new Error("Failed to fetch movies");
       const movies = await res.json();
-      return movies.find((m: any) => String(m.id) === id);
+      return movies.find((m: any) => String(m._id) === id);
     },
     enabled: !!id,
   });

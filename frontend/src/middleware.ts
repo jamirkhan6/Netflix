@@ -5,12 +5,12 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const loggedIn = req.cookies.get("loggedIn")?.value === "true";
 
-  // যদি logged in না থাকে এবং private route এ ঢুকতে চায়
+  
   if (!loggedIn && (pathname.startsWith("/home") || pathname.startsWith("/movie")) ) {
     return NextResponse.redirect(new URL("/SignIn", req.url));
   }
 
-  // যদি logged in থাকে এবং public route এ ঢুকতে চায়
+
   if (
     loggedIn &&
     (pathname === "/" ||

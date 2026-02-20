@@ -7,10 +7,14 @@ import { useAppContext } from "../api/context/AppContext";
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const {searchTerm, setSearchTerm} = useAppContext();
+  const { searchTerm, setSearchTerm } = useAppContext();
 
   const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
+    await fetch("http://localhost:3000/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
     router.push("/SignIn");
   };
 

@@ -12,13 +12,6 @@ export default function Home() {
   const { searchTerm } = useAppContext();
   const [filter, setFilter] = useState("");
 
-  const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
-    router.push("/SignIn");
-  };
-
-
-
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["movies"],

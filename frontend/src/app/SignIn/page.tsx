@@ -75,7 +75,10 @@ export default function SignInPage() {
           Sign In to Your Account
         </h1>
 
-        <form className="flex flex-col gap-4 w-full mt-3">
+        <form
+          onSubmit={handleLogIn}
+          className="flex flex-col gap-4 w-full mt-3"
+        >
           <input
             type="email"
             name="email"
@@ -92,7 +95,7 @@ export default function SignInPage() {
             placeholder="Password"
             className="p-3 rounded-sm bg-white/10 border border-white placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
           />
-          <button onClick={handleLogIn} className="bg-red-600 hover:bg-red-700 text-white py-3 rounded-sm font-semibold mt-2">
+          <button type="submit" className="bg-red-600 hover:bg-red-700 text-white py-3 rounded-sm font-semibold mt-2">
             Sign In
           </button>
         </form>

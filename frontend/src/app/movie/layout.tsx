@@ -9,7 +9,11 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
+    await fetch("http://localhost:3000/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
     router.push("/SignIn");
   };
 

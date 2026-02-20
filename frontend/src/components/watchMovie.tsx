@@ -16,11 +16,11 @@ export default function WatchedMovies() {
       <div className="grid grid-cols-6 gap-8">
         {movies.map((movie) => (
           <div
-            key={movie.id}
+            key={movie._id}
             className="w-full p-4 col-span-1 border-1 border-gray-500 rounded-3xl"
           >
             <img
-              src={movie.img}
+              src={movie.posterUrl}
               alt={movie.name}
               className="w-full h-72 rounded-2xl"
             />

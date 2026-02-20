@@ -77,9 +77,15 @@ router.post("/SignIn", async (req, res) => {
 
     if (!isMatch) {
       return res.status(400).json({
-        message: "Invalid credentials",
+        message: "Invalid credentials for password",
       });
     }
+
+    res.cookie("loggedIn", "true", {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 24,
+    });
 
     res.status(200).json({
       message: "Login successful",
@@ -91,6 +97,27 @@ router.post("/SignIn", async (req, res) => {
     });
   } catch (error) {
     console.log("Signin Error:", error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
+
+
+router.post("/logout", (req, res) => {
+  try {
+    res.clearCookie("loggedIn", {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/", // VERY IMPORTANT
+    });
+
+    return res.status(200).json({
+      message: "Logout successful",
+    });
+  } catch (error) {
+    console.log("Logout Error:", error);
     res.status(500).json({
       message: "Server error",
     });
